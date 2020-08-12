@@ -1,12 +1,12 @@
-﻿using System.Reflection.Metadata.Ecma335;
+﻿using System.Xml;
 
-namespace Tabuleiro
+namespace tabuleiro
 {
     class Tabuleiro
     {
         public int Linhas { get; set; }
         public int Colunas { get; set; }
-        private Peca[,] Pecas;
+        private readonly Peca[,] Pecas;
 
         public Tabuleiro(int linhas, int colunas)
         {
@@ -14,5 +14,12 @@ namespace Tabuleiro
             Colunas = colunas;
             Pecas = new Peca[linhas, colunas];
         }
+
+        public Peca Peca(int linha, int coluna)
+        {
+            return Pecas[linha, coluna];
+        }
+
+
     }
 }
