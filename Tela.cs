@@ -13,7 +13,7 @@ namespace xadrez_console
                 for (int coluna = 0; coluna < tabuleiro.Colunas; coluna++)
                 {
                     if (tabuleiro.Peca(linha, coluna) == null)
-                        Console.Write("_ ");
+                        Console.Write("- ");
                     else
                         Console.Write(tabuleiro.Peca(linha, coluna) + " ");
                 }
