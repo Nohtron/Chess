@@ -1,4 +1,4 @@
-﻿using System.Xml;
+﻿using tabuleiro.exceptions;
 
 namespace tabuleiro
 {
@@ -20,10 +20,29 @@ namespace tabuleiro
             return Pecas[linha, coluna];
         }
 
+        public Peca Peca(Posicao posicao)
+        {
+            return Pecas[posicao.Linha, posicao.Coluna];
+        }
+
         public void ColocarPeca(Peca peca, Posicao posicao)
         {
             Pecas[posicao.Linha, posicao.Coluna] = peca;
             peca.Posicao = posicao;
+        }
+
+        public bool PosicaoValida(Posicao posicao)
+        {
+            if (posicao.Linha < 0 || posicao.Linha >= Linhas || posicao.Coluna < 0 || posicao.Coluna >= Colunas)
+                return false;
+
+            return true;
+        }
+
+        public void ValidarPosicao(Posicao posicao)
+        {
+            if (posicao.Linha < 0 || posicao.Linha >= Linhas || posicao.Coluna < 0 || posicao.Coluna >= Colunas)
+                throw new TabuleiroException($"Tabuleito.ValidarPosicao - Erro: Posição {posicao} fora dos limites do tabuleiro de {Linhas}x{Colunas}");
         }
 
     }
