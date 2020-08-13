@@ -27,8 +27,17 @@ namespace tabuleiro
 
         public void ColocarPeca(Peca peca, Posicao posicao)
         {
+            if (existePeca(posicao))
+                throw new TabuleiroException("Já existe uma peça nessa posição");
+
             Pecas[posicao.Linha, posicao.Coluna] = peca;
             peca.Posicao = posicao;
+        }
+
+        public bool existePeca(Posicao posicao)
+        {
+            ValidarPosicao(posicao);
+            return Peca(posicao) != null;
         }
 
         public bool PosicaoValida(Posicao posicao)
@@ -41,7 +50,7 @@ namespace tabuleiro
 
         public void ValidarPosicao(Posicao posicao)
         {
-            if (posicao.Linha < 0 || posicao.Linha >= Linhas || posicao.Coluna < 0 || posicao.Coluna >= Colunas)
+            if (!PosicaoValida(posicao))
                 throw new TabuleiroException($"Tabuleito.ValidarPosicao - Erro: Posição {posicao} fora dos limites do tabuleiro de {Linhas}x{Colunas}");
         }
 
