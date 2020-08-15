@@ -21,16 +21,21 @@ namespace xadrez_console
 
 
                     Console.WriteLine();
-                    Console.Write("Digite a posição de origem: ");
+                    Console.Write("Posição peça de origem: ");
                     Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
 
-                    Console.Write("Digite a posição de destino: ");
+                    bool[,] posicoesPossiveis = partidaDeXadrez.Tabuleiro.Peca(origem).PosicoesPossiveis();
+                    Console.Clear();                    
+                    Tela.ImprimirTabuleiro(partidaDeXadrez.Tabuleiro, posicoesPossiveis);
+
+                    Console.WriteLine();
+                    Console.Write("Posição destino: ");
                     Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
 
                     partidaDeXadrez.ExecutarMovimento(origem, destino);
                 }
 
-                
+
             }
             catch (TabuleiroException e)
             {
