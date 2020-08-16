@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Security.Cryptography;
 using tabuleiro;
-using tabuleiro.enums;
 using tabuleiro.exceptions;
 using xadrez;
 
@@ -20,10 +18,7 @@ namespace xadrez_console
                     try
                     {
                         Console.Clear();
-                        Tela.ImprimirTabuleiro(partidaDeXadrez.Tabuleiro);
-                        Console.WriteLine();
-                        Console.WriteLine($"Turno: {partidaDeXadrez.Turno}");
-                        Console.WriteLine($"Aguardando jogada da peça {partidaDeXadrez.CorDoJogadorAtual}");
+                        Tela.ImprimirPartida(partidaDeXadrez);
 
 
                         Console.WriteLine();
