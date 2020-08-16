@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 using tabuleiro;
 using tabuleiro.enums;
+using tabuleiro.exceptions;
 
 namespace xadrez
 {
     class PartidaDeXadrez
     {
         public Tabuleiro Tabuleiro { get; private set; }
-        private int Turno;
-        private Cor CorDoJogadorAtual;
+        public int Turno { get; private set; }
+        public Cor CorDoJogadorAtual { get; private set; }
         public bool Terminou { get; private set; }
 
         public PartidaDeXadrez()
@@ -27,6 +29,39 @@ namespace xadrez
             peca.IncrementaQuantidadeDeMovimentos();
             Peca pecaCapturada = Tabuleiro.RetirarPeca(destino);
             Tabuleiro.ColocarPeca(peca, destino);
+        }
+
+        public void RealizaJogada(Posicao origem, Posicao destino)
+        {
+            ExecutarMovimento(origem, destino);
+            Turno++;
+            MudaJogadorAtual();
+        }
+
+        public void ValidarPosicaoDeOrigem(Posicao posicao)
+        {
+            if (Tabuleiro.Peca(posicao) == null)
+                throw new TabuleiroException($"Não existe peça na posição {PosicaoXadrez.Parse(posicao)}");
+
+            if (CorDoJogadorAtual != Tabuleiro.Peca(posicao).Cor)
+                throw new TabuleiroException($"A peça de origem neste turno deve ser {CorDoJogadorAtual}");
+
+            if (!Tabuleiro.Peca(posicao).ExisteMovimentosPossiveis())
+                throw new TabuleiroException($"Não existem movimentos possíveis para a peça na posição {PosicaoXadrez.Parse(posicao)}");
+        }
+
+        public void ValidarPosicaoDeDestino(Posicao origem, Posicao destino)
+        {
+            if (!Tabuleiro.Peca(origem).PodeMoverPara(destino))
+                throw new TabuleiroException($"Posição de destino {PosicaoXadrez.Parse(destino)} não é um movimento válido para a peça em {PosicaoXadrez.Parse(origem)}");
+        }
+
+        public void MudaJogadorAtual()
+        {
+            if (CorDoJogadorAtual == Cor.Branca)
+                CorDoJogadorAtual = Cor.Preta;
+            else
+                CorDoJogadorAtual = Cor.Branca;
         }
 
         private void ColocarPecas()

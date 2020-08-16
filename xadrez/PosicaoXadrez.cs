@@ -18,6 +18,11 @@ namespace xadrez
             return new Posicao(8 - Linha, Coluna - 'a');
         }
 
+        public static PosicaoXadrez Parse(Posicao posicao)
+        {
+            return new PosicaoXadrez((char)(posicao.Coluna + 'a'), 8 - posicao.Linha);
+        }
+
         public override string ToString()
         {
             return $"{Coluna}{Linha}";

@@ -22,6 +22,27 @@ namespace tabuleiro
             QuantidadeDeMovimentos++;
         }
 
+        public bool ExisteMovimentosPossiveis()
+        {
+            bool[,] matrizDeMovimentosPossiveis = PosicoesPossiveis();
+
+            for (int linha = 0; linha < Tabuleiro.Linhas; linha++)
+            {
+                for (int coluna = 0; coluna < Tabuleiro.Colunas; coluna++)
+                {
+                    if (matrizDeMovimentosPossiveis[linha, coluna])
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        public bool PodeMoverPara(Posicao posicao)
+        {
+            return PosicoesPossiveis()[posicao.Linha, posicao.Coluna];
+        }
+
+
         public abstract bool[,] PosicoesPossiveis();
     }
 }
