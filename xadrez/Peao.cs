@@ -40,37 +40,37 @@ namespace xadrez
 
             if (Cor == Cor.Branca)
             {
-                posicao.DefinirValores(posicao.Linha - 1, posicao.Coluna);
+                posicao.DefinirValores(Posicao.Linha - 1, Posicao.Coluna);
                 if (Tabuleiro.PosicaoValida(posicao) && PosicaoLivre(posicao))
                     matrizDePosicoesPossiveis[posicao.Linha, posicao.Coluna] = true;
 
-                posicao.DefinirValores(posicao.Linha - 2, posicao.Coluna);
+                posicao.DefinirValores(Posicao.Linha - 2, Posicao.Coluna);
                 if (Tabuleiro.PosicaoValida(posicao) && PosicaoLivre(posicao) && QuantidadeDeMovimentos == 0)
                     matrizDePosicoesPossiveis[posicao.Linha, posicao.Coluna] = true;
 
-                posicao.DefinirValores(posicao.Linha - 1, posicao.Coluna - 1);
+                posicao.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 1);
                 if (Tabuleiro.PosicaoValida(posicao) && ExisteUmInimigo(posicao))
                     matrizDePosicoesPossiveis[posicao.Linha, posicao.Coluna] = true;
 
-                posicao.DefinirValores(posicao.Linha - 1, posicao.Coluna + 1);
+                posicao.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
                 if (Tabuleiro.PosicaoValida(posicao) && ExisteUmInimigo(posicao))
                     matrizDePosicoesPossiveis[posicao.Linha, posicao.Coluna] = true;
             }
             else
             {
-                posicao.DefinirValores(posicao.Linha + 1, posicao.Coluna);
+                posicao.DefinirValores(Posicao.Linha + 1, Posicao.Coluna);
                 if (Tabuleiro.PosicaoValida(posicao) && PosicaoLivre(posicao))
                     matrizDePosicoesPossiveis[posicao.Linha, posicao.Coluna] = true;
 
-                posicao.DefinirValores(posicao.Linha + 2, posicao.Coluna);
+                posicao.DefinirValores(Posicao.Linha + 2, Posicao.Coluna);
                 if (Tabuleiro.PosicaoValida(posicao) && PosicaoLivre(posicao) && QuantidadeDeMovimentos == 0)
                     matrizDePosicoesPossiveis[posicao.Linha, posicao.Coluna] = true;
 
-                posicao.DefinirValores(posicao.Linha + 1, posicao.Coluna - 1);
+                posicao.DefinirValores(Posicao.Linha + 1, Posicao.Coluna - 1);
                 if (Tabuleiro.PosicaoValida(posicao) && ExisteUmInimigo(posicao))
                     matrizDePosicoesPossiveis[posicao.Linha, posicao.Coluna] = true;
 
-                posicao.DefinirValores(posicao.Linha + 1, posicao.Coluna + 1);
+                posicao.DefinirValores(Posicao.Linha + 1, Posicao.Coluna + 1);
                 if (Tabuleiro.PosicaoValida(posicao) && ExisteUmInimigo(posicao))
                     matrizDePosicoesPossiveis[posicao.Linha, posicao.Coluna] = true;
             }

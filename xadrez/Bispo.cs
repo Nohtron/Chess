@@ -1,7 +1,7 @@
 ﻿using tabuleiro;
 using tabuleiro.enums;
 
-namespace xadrez_console.xadrez
+namespace xadrez
 {
     class Bispo : Peca
     {
@@ -36,7 +36,7 @@ namespace xadrez_console.xadrez
                 if (Tabuleiro.Peca(posicao) != null && Tabuleiro.Peca(posicao).Cor != Cor)
                     break;
 
-                posicao.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
+                posicao.DefinirValores(posicao.Linha - 1, posicao.Coluna + 1);
             }
 
             // Direita e pra trás
@@ -48,7 +48,7 @@ namespace xadrez_console.xadrez
                 if (Tabuleiro.Peca(posicao) != null && Tabuleiro.Peca(posicao).Cor != Cor)
                     break;
 
-                posicao.DefinirValores(Posicao.Linha + 1, Posicao.Coluna + 1);
+                posicao.DefinirValores(posicao.Linha + 1, posicao.Coluna + 1);
             }
 
             // Esquerda e pra trás
@@ -60,7 +60,7 @@ namespace xadrez_console.xadrez
                 if (Tabuleiro.Peca(posicao) != null && Tabuleiro.Peca(posicao).Cor != Cor)
                     break;
 
-                posicao.DefinirValores(Posicao.Linha + 1, Posicao.Coluna - 1);
+                posicao.DefinirValores(posicao.Linha + 1, posicao.Coluna - 1);
             }
 
             // Esquerda e pra frente
@@ -72,7 +72,7 @@ namespace xadrez_console.xadrez
                 if (Tabuleiro.Peca(posicao) != null && Tabuleiro.Peca(posicao).Cor != Cor)
                     break;
 
-                posicao.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 1);
+                posicao.DefinirValores(posicao.Linha - 1, posicao.Coluna - 1);
             }
 
             return matrizDePosicoesPossiveis;

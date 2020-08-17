@@ -1,7 +1,7 @@
 ﻿using tabuleiro;
 using tabuleiro.enums;
 
-namespace xadrez_console.xadrez
+namespace xadrez
 {
     class Cavalo : Peca
     {
@@ -53,17 +53,17 @@ namespace xadrez_console.xadrez
                 matrizDePosicoesPossiveis[posicao.Linha, posicao.Coluna] = true;
 
             // Pra tras 2 e direita 1
-            posicao.DefinirValores(Posicao.Linha - 2, Posicao.Coluna + 1);
+            posicao.DefinirValores(Posicao.Linha + 2, Posicao.Coluna + 1);
             if (Tabuleiro.PosicaoValida(posicao) && PodeMover(posicao))
                 matrizDePosicoesPossiveis[posicao.Linha, posicao.Coluna] = true;
 
             // Pra tras 1 e esquerda 2
-            posicao.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 2);
+            posicao.DefinirValores(Posicao.Linha + 1, Posicao.Coluna - 2);
             if (Tabuleiro.PosicaoValida(posicao) && PodeMover(posicao))
                 matrizDePosicoesPossiveis[posicao.Linha, posicao.Coluna] = true;
 
             // Pra tras 2 e esquerda 1
-            posicao.DefinirValores(Posicao.Linha - 2, Posicao.Coluna - 1);
+            posicao.DefinirValores(Posicao.Linha + 2, Posicao.Coluna - 1);
             if (Tabuleiro.PosicaoValida(posicao) && PodeMover(posicao))
                 matrizDePosicoesPossiveis[posicao.Linha, posicao.Coluna] = true;
 
