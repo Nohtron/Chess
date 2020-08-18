@@ -5,9 +5,11 @@ namespace xadrez
 {
     class Peao : Peca
     {
-        public Peao(Tabuleiro tabuleiro, Cor cor) : base(tabuleiro, cor)
-        {
+        private PartidaDeXadrez PartidaDeXadrez;
 
+        public Peao(Tabuleiro tabuleiro, Cor cor, PartidaDeXadrez partidaDeXadrez) : base(tabuleiro, cor)
+        {
+            PartidaDeXadrez = partidaDeXadrez;
         }
 
         public override string ToString()
@@ -55,6 +57,19 @@ namespace xadrez
                 posicao.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
                 if (Tabuleiro.PosicaoValida(posicao) && ExisteUmInimigo(posicao))
                     matrizDePosicoesPossiveis[posicao.Linha, posicao.Coluna] = true;
+
+                // # JogadaEspecial - En Passant
+                if(Posicao.Linha == 3)
+                {
+                    Posicao esquerda = new Posicao(Posicao.Linha, Posicao.Coluna - 1);
+                    if (Tabuleiro.PosicaoValida(esquerda) && ExisteUmInimigo(esquerda) && Tabuleiro.Peca(esquerda) == PartidaDeXadrez.PossivelEnPassant)
+                        matrizDePosicoesPossiveis[esquerda.Linha - 1, esquerda.Coluna] = true;
+
+                    Posicao direita = new Posicao(Posicao.Linha, Posicao.Coluna + 1);
+                    if (Tabuleiro.PosicaoValida(direita) && ExisteUmInimigo(direita) && Tabuleiro.Peca(direita) == PartidaDeXadrez.PossivelEnPassant)
+                        matrizDePosicoesPossiveis[direita.Linha - 1, direita.Coluna] = true;
+                }
+
             }
             else
             {
@@ -73,6 +88,20 @@ namespace xadrez
                 posicao.DefinirValores(Posicao.Linha + 1, Posicao.Coluna + 1);
                 if (Tabuleiro.PosicaoValida(posicao) && ExisteUmInimigo(posicao))
                     matrizDePosicoesPossiveis[posicao.Linha, posicao.Coluna] = true;
+
+                // # JogadaEspecial - En Passant
+                if (Posicao.Linha == 4)
+                {
+                    Posicao esquerda = new Posicao(Posicao.Linha, Posicao.Coluna - 1);
+                    if (Tabuleiro.PosicaoValida(esquerda) && ExisteUmInimigo(esquerda) && Tabuleiro.Peca(esquerda) == PartidaDeXadrez.PossivelEnPassant)
+                        matrizDePosicoesPossiveis[esquerda.Linha + 1, esquerda.Coluna] = true;
+
+                    Posicao direita = new Posicao(Posicao.Linha, Posicao.Coluna + 1);
+                    if (Tabuleiro.PosicaoValida(direita) && ExisteUmInimigo(direita) && Tabuleiro.Peca(direita) == PartidaDeXadrez.PossivelEnPassant)
+                        matrizDePosicoesPossiveis[direita.Linha + 1, direita.Coluna] = true;
+                }
+
+
             }
 
             return matrizDePosicoesPossiveis;
