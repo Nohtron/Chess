@@ -1,4 +1,6 @@
-﻿using tabuleiro;
+﻿using System;
+using tabuleiro;
+using tabuleiro.exceptions;
 
 namespace xadrez
 {
@@ -15,6 +17,10 @@ namespace xadrez
 
         public Posicao ToPosicao()
         {
+            if (Linha > 8 || Coluna > 'h' || Linha < 1 || Coluna < 'a')
+            {
+                throw new TabuleiroException("Posição digitada inválida");
+            }
             return new Posicao(8 - Linha, Coluna - 'a');
         }
 
